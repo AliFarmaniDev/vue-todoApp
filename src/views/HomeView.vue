@@ -1,27 +1,27 @@
 <script setup>
 import TodoItem from '@/components/TodoItem.vue'
-import Warpper from '@/components/Warpper.vue';
+import Warpper from '@/components/Warpper.vue'
 const todos = [
   {
     id: 1,
     title: 'reading book',
     done: true,
-    createdAt: "11/06/2023",
-    priority: "high"
+    createdAt: '11/06/2023',
+    priority: 'high',
   },
   {
     id: 2,
     title: 'do home works',
     done: false,
-    createdAt: "12/06/2023",
-    priority: "normal",
+    createdAt: '12/06/2023',
+    priority: 'normal',
   },
   {
     id: 3,
     title: 'chocking',
     done: false,
-    createdAt: "13/06/2023",
-    priority: "low",
+    createdAt: '13/06/2023',
+    priority: 'low',
   },
 ]
 </script>

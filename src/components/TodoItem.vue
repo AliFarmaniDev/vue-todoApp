@@ -1,11 +1,10 @@
 <script setup>
 defineProps({
-    todo: {
-        type: Object,
-        requier: true
-    }
+  todo: {
+    type: Object,
+    requier: true,
+  },
 })
-
 </script>
 
 <template>
@@ -13,10 +12,10 @@ defineProps({
     <div class="header">
       <span>date: {{ todo.createdAt }}</span>
       <div class="action">
-        <button class="material-icons delete"></button>
+        <button class="material-icons delete" @click="console.log('test')"></button>
         <label class="container">
           done/pending
-          <input type="checkbox" :checked="todo.done">
+          <input type="checkbox" :checked="todo.done" @input="console.log('input')" />
           <span class="check-mark"></span>
         </label>
       </div>
@@ -41,7 +40,7 @@ defineProps({
   justify-content: space-between;
   align-items: center;
   color: #fff;
-  button{
+  button {
     border-radius: 30px;
   }
   .action {
@@ -49,13 +48,13 @@ defineProps({
     align-items: center;
     gap: 10px;
   }
-  div .delete{
+  div .delete {
     font-size: 20px;
     padding: 3px;
     background-color: #fff;
     color: #ef4444;
   }
-  h1{
+  h1 {
     padding: 1rem;
   }
   p {
