@@ -28,3 +28,25 @@ const todos = [
     </Warpper>
   </div>
 </template>
+
+<style lang="scss" scoped>
+.header {
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  button {
+    color: #fff;
+    background-color: #1e40af;
+    padding: 4px 15px;
+    border-radius: 5px;
+    a:hover {
+      background-color: #0ea5e9;
+    }
+  }
+}
+</style>
