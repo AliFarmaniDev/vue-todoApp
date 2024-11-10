@@ -1,16 +1,17 @@
 <script setup>
-import TodoItem from '@/components/TodoItem.vue';
+import TodoItem from '@/components/TodoItem.vue'
+import Warpper from '@/components/Warpper.vue';
 const todos = [
   {
     id: 1,
-    title: "a",
-    done: true
+    title: 'a',
+    done: true,
   },
   {
     id: 2,
-    title: "b",
-    done: false
-  }
+    title: 'b',
+    done: false,
+  },
 ]
 </script>
 
@@ -22,6 +23,8 @@ const todos = [
     <button>Show Todos</button>
   </div>
   <div v-for="todo in todos" :key="todo.id">
-    <TodoItem :todo="todo" />
+    <Warpper>
+      <TodoItem :todo="todo" />
+    </Warpper>
   </div>
 </template>
