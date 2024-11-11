@@ -26,7 +26,7 @@ export const useTodoStore = defineStore('todo-store', {
   state() {
     //داده هایی که به صورت گلوبال در تمام پروژه در دسترس هستند
     return {
-      todo: [todos],
+      todo: [...todos],
       loading: true,
       error: '',
     }
@@ -38,24 +38,20 @@ export const useTodoStore = defineStore('todo-store', {
       state.todo.filter((todo) => todo.done)
     },
     sorted() {
-        return this.todo.sort((a,b)=> new Date(b.createdAt)-new Date(a.createdAt))
-    }
+      return this.todo.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+    },
+    todoCount() {
+      return this.todo.length
+    },
   },
 
   actions: {
     //api call
-    getTodo() {
-
+    getTodo() {},
+    addTodo() {},
+    deleteTodo(id) {
+      this.todo = this.todo.filter((t) => t.id === id)
     },
-    addTodo() {
-
-    },
-    deleteTodo(id){
-      this.todo = this.todo.filter(t => t.id === id);
-    },
-    updateTodo(){
-
-    }
-
-  }
+    updateTodo() {},
+  },
 })

@@ -1,5 +1,5 @@
 <script setup>
-import { useTodoStore } from '@/stores/todo';
+import { useTodoStore } from '@/stores/todo'
 const TodoStore = useTodoStore()
 defineProps({
   todo: {
@@ -16,7 +16,7 @@ defineProps({
       <div class="action">
         <button class="material-icons delete" @click="TodoStore.deleteTodo(todo.id)"></button>
         <label class="container">
-          {{todo.done? 'Done' : 'Pending'}}
+          {{ todo.done ? 'Done' : 'Pending' }}
           <input type="checkbox" :checked="todo.done" @input="console.log('input')" />
           <span class="check-mark"></span>
         </label>
