@@ -50,8 +50,8 @@ export const useTodoStore = defineStore('todo-store', {
     addTodo() {
 
     },
-    deleteTodo(){
-
+    deleteTodo(id){
+      this.todo = this.todo.filter(t => t.id === id);
     },
     updateTodo(){
 
