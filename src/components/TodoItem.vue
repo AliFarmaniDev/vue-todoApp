@@ -17,7 +17,7 @@ defineProps({
         <button class="material-icons delete" @click="TodoStore.deleteTodo(todo.id)"></button>
         <label class="container">
           {{ todo.done ? 'Done' : 'Pending' }}
-          <input type="checkbox" :checked="todo.done" @input="console.log('input')" />
+          <input type="checkbox" :checked="todo.done" @input="TodoStore.updateTodo(todo.id)" />
           <span class="check-mark"></span>
         </label>
       </div>

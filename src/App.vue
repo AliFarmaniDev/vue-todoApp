@@ -1,5 +1,8 @@
 <script setup>
-import { RouterView } from 'vue-router'
+import { RouterView } from 'vue-router';
+import { useTodoStore } from './stores/todo';
+const todoStore = useTodoStore()
+todoStore.getTodo()
 </script>
 
 <template>

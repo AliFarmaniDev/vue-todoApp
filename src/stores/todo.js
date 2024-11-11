@@ -1,32 +1,10 @@
 import { defineStore } from 'pinia'
-const todos = [
-  {
-    id: 1,
-    title: 'reading book',
-    done: true,
-    createdAt: '11/06/2023',
-    priority: 'high',
-  },
-  {
-    id: 2,
-    title: 'do home works',
-    done: false,
-    createdAt: '12/06/2023',
-    priority: 'normal',
-  },
-  {
-    id: 3,
-    title: 'chocking',
-    done: true,
-    createdAt: '13/06/2023',
-    priority: 'low',
-  },
-]
+
 export const useTodoStore = defineStore('todo-store', {
   state() {
     //داده هایی که به صورت گلوبال در تمام پروژه در دسترس هستند
     return {
-      todo: [...todos],
+      todo: [],
       loading: true,
       error: '',
     }
@@ -46,12 +24,30 @@ export const useTodoStore = defineStore('todo-store', {
   },
 
   actions: {
-    //api call
-    getTodo() {},
+    getTodo() {
+      //get todos
+      fetch('http://localhost:3000/todos')
+        .then((res) => res.json())
+        .then((data) => {
+          this.data = data
+          this.loading = false
+        })
+        .catch((error) => {
+          this.error = error
+          this.loading = false
+        })
+    },
     addTodo() {},
     deleteTodo(id) {
       this.todo = this.todo.filter((t) => t.id === id)
+      fetch(`http://localhost:3000/todos/${id}` , {method: 'DELETE'}).catch(e => console.log(`Error is ${e.message}`))
     },
-    updateTodo() {},
+    updateTodo(id) {
+      const todo = this.todofintd(t => t.id === id)
+      todo.done = !todo.done
+      //api call
+      fetch(`http://localhost:3000/todos/${id}`,{method: 'PATCH',body: JSON.stringify({done:todo.done})})
+      .catch(e => console.log(`Error is ${e.message}`))
+    },
   },
 })
