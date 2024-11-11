@@ -1,42 +1,38 @@
 <script setup>
 import TodoItem from '@/components/TodoItem.vue'
 import Warpper from '@/components/Warpper.vue'
-const todos = [
-  {
-    id: 1,
-    title: 'reading book',
-    done: true,
-    createdAt: '11/06/2023',
-    priority: 'high',
-  },
-  {
-    id: 2,
-    title: 'do home works',
-    done: false,
-    createdAt: '12/06/2023',
-    priority: 'normal',
-  },
-  {
-    id: 3,
-    title: 'chocking',
-    done: false,
-    createdAt: '13/06/2023',
-    priority: 'low',
-  },
-]
+import { useTodoStore } from '@/stores/todo'
+import { ref } from 'vue'
+
+const todoStore = useTodoStore()
+const todoFilter = ref('all')
+const setTodoFilter = () => {
+  todoFilter.value = todoFilter.value == 'all' ? 'done' : 'done'
+}
 </script>
 
 <template>
   <div class="header">
     <div>
-      <h3>Todos</h3>
+      <h3>{{ todoFilter == 'all' ? 'All Todo' : 'Done Todo' }}</h3>
     </div>
-    <button>Show Todos</button>
+    <button @click="setTodoFilter">
+      {{ todoFilter == 'all' ? 'Show Done Todo' : 'Show All Todo' }}
+    </button>
   </div>
-  <div v-for="todo in todos" :key="todo.id">
-    <Warpper>
-      <TodoItem :todo="todo" />
-    </Warpper>
+  <div v-if="todoFilter == 'all'">
+    <div v-for="todo in todoStore.sorted" :key="todo.id">
+      <Warpper>
+        <TodoItem :todo="todo" />
+      </Warpper>
+    </div>
+  </div>
+  <div v-else>
+    <div v-for="todo in todoStore.done" :key="todo.id">
+      <Warpper>
+        <TodoItem :todo="todo" />
+      </Warpper>
+    </div>
   </div>
 </template>
 
