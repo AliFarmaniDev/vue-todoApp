@@ -1,18 +1,23 @@
 <script setup>
-import { RouterView } from 'vue-router';
-import { useTodoStore } from './stores/todo';
+import { RouterView } from 'vue-router'
+import { useTodoStore } from './stores/todo'
+import Theme from './provider/theme.vue'
+import ThemeDisplay from './components/ThemeDisplay.vue'
 const todoStore = useTodoStore()
 todoStore.getTodo()
 </script>
 
 <template>
-  <header>
-    <nav>
-      <RouterLink to="/" class="nav-link">Home</RouterLink>
-      <RouterLink to="/add" class="nav-link">New Todo</RouterLink>
-    </nav>
-  </header>
-  <RouterView />
+  <Theme>
+    <header>
+      <ThemeDisplay />
+      <nav>
+        <RouterLink to="/" class="nav-link">Home</RouterLink>
+        <RouterLink to="/add" class="nav-link">New Todo</RouterLink>
+      </nav>
+    </header>
+    <RouterView />
+  </Theme>
 </template>
 
 <style lang="scss" scoped>
