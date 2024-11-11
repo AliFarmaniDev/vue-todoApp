@@ -37,12 +37,28 @@ export const useTodoStore = defineStore('todo-store', {
           this.loading = false
         })
     },
-    addTodo() {},
+    addTodo(todo) {
+      //add todos
+      const newTodo = {
+        id: (+new Date()).toString(),
+        title: todo.title,
+        createdAt: new Date().toLocaleDateString(),
+        priority: todo.priority,
+        done: false
+      }
+      this.todo.push(newTodo)
+      fetch('http://localhost:3000/todos',{method: 'POST',body: JSON.stringify(newTodo)})
+      .catch((e)=>{
+        console.log(`Error is ${e.message}`)
+      })
+    },
     deleteTodo(id) {
+      //delete todo
       this.todo = this.todo.filter((t) => t.id === id)
       fetch(`http://localhost:3000/todos/${id}` , {method: 'DELETE'}).catch(e => console.log(`Error is ${e.message}`))
     },
     updateTodo(id) {
+      // update todos
       const todo = this.todofintd(t => t.id === id)
       todo.done = !todo.done
       //api call
